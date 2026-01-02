@@ -67,7 +67,6 @@ public class EventManager {
     public void createConcertEvent(String name, Date date, int price, int maxCapacity, int bookedTickes, String artist, String genre) {
         Event concert = new Concert(name, date, price, maxCapacity, bookedTickes, artist, genre);
         eventList.put(name, concert);
-        events.add(concert);
     }
 
     public void createWorkShopEvent(String name, Date date, int price, int maxCapacity, int bookedTickes, String instructor, String topic, boolean materials) {
