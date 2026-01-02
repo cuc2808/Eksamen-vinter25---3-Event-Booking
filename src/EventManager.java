@@ -13,7 +13,7 @@ public class EventManager {
     public void printSummary(){
         System.out.println("=== Event Overview ===\n");
         eventList.keySet().forEach(String -> {
-            if(eventList.get(String) instanceof Concert){
+            if (eventList.get(String) instanceof Concert) {
                 String concertName = ((Concert) eventList.get(String)).getName();
                 Date concertDate = ((Concert) eventList.get(String)).getDate();
                 int price = ((Concert) eventList.get(String)).getPrice();
@@ -22,18 +22,44 @@ public class EventManager {
                 boolean status = ((Concert) eventList.get(String)).isSoldOut();
                 String artist = ((Concert) eventList.get(String)).getArtist();
                 String genre = ((Concert) eventList.get(String)).getGenre();
-                System.out.println("Concert: " + concertName + " with " + artist + " [" + genre + "]");
+                System.out.println("Concert: '" + concertName + "' with " + artist + " [" + genre + "]");
                 System.out.println("Date: " + concertDate);
                 System.out.println("Price: " + price + " kr.");
-                System.out.println("Booked: " + bookedTickets + "/" + maxCapacity + "tickets");
+                System.out.println("Booked: " + bookedTickets + " / " + maxCapacity + " tickets");
                 if(status) {
-                    System.out.println("Status: SOLD OUT" );
+                    System.out.println("Status: SOLD OUT\n" );
                 } else {
-                    System.out.println("Status: Available" );
+                    System.out.println("Status: Available\n" );
                 }
+
+            } else if (eventList.get(String) instanceof WorkShop) {
+                String workShopName = ((WorkShop) eventList.get(String)).getName();
+                Date workShopDate = ((WorkShop) eventList.get(String)).getDate();
+                int price = ((WorkShop) eventList.get(String)).getPrice();
+                int bookedTickets = ((WorkShop) eventList.get(String)).getBookedTickets();
+                int maxCapacity = ((WorkShop) eventList.get(String)).getMaxCapacity();
+                boolean materialsIncluded = ((WorkShop) eventList.get(String)).materialsIncluded();
+                boolean status = ((WorkShop) eventList.get(String)).isSoldOut();
+                String instructor = ((WorkShop) eventList.get(String)).getInstructor();
+                String topic = ((WorkShop) eventList.get(String)).getTopic();
+                System.out.println("WorkShop: '" + workShopName + "' with " + instructor + " [" + topic + "]");
+                System.out.println("Date: " + workShopDate);
+                System.out.println("Price: " + price + " kr.");
+                System.out.println("Booked: " + bookedTickets + " / " + maxCapacity + " tickets");
+                if(materialsIncluded) {
+                    System.out.println("Materials included: Yes" );
+                } else {
+                    System.out.println("Materials included: No" );
+                }
+                if(status) {
+                    System.out.println("Status: SOLD OUT\n" );
+                } else {
+                    System.out.println("Status: Available\n" );
+                }
+
             }
         });
-
+        getMostPopular();
     }
 
     // ======================================================================================
@@ -47,6 +73,13 @@ public class EventManager {
     public void createWorkShopEvent(String name, Date date, int price, int maxCapacity, int bookedTickes, String instructor, String topic, boolean materials) {
         Event workShop = new WorkShop(name, date, price, maxCapacity, bookedTickes, instructor, topic, materials);
         eventList.put(name, workShop);
+    }
+
+    public void loadEvents(){
+        createConcertEvent("The emptiness Machine", new Date(126,1,20, 20,30),399, 2000, 1399, "Linkin Park", "ROCK");
+        createConcertEvent("Back in the ol' days", new Date(126,2,5, 20,0),449, 2000, 2000, "Queen", "POP");
+        createWorkShopEvent("How To Draw a PERFECT Circle", new Date(126,3,15,15,30),50,10,9,"Damian","Arts & Crafts",false);
+        createWorkShopEvent("The 10 principles of Epictetus", new Date(126,2,12,19,15),129,30,30,"Shaun","Philosophy, Stoicism",true);
     }
 
     public void addEvent(String eventName, Event event) {
@@ -64,7 +97,7 @@ public class EventManager {
 
 
     //mmmmmm Java script lookin nice.
-    public void getMostPopular(TreeMap<String, Event> list) {
+    public void getMostPopular() {
         TreeMap<Integer, String> amountBookedList = new TreeMap<>();
 
         //eventList.values().forEach()

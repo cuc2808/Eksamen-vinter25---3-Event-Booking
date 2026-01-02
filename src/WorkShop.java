@@ -31,7 +31,7 @@ public class WorkShop extends Event {
         this.topic = topic;
     }
 
-    public boolean isMaterials() {
+    public boolean materialsIncluded() {
         return materials;
     }
 
