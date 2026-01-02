@@ -8,6 +8,12 @@ public class EventManager {
     public TreeMap<String, Event> eventList = new TreeMap<>();
     public ArrayList<Event> events = new ArrayList<>();
 
+    UI ui = new UI();
+
+    public EventManager(){
+        loadEvents();
+    }
+
     // ======================================================================================
 
     public void printSummary(){
@@ -85,12 +91,25 @@ public class EventManager {
         eventList.put(eventName,event);
     }
 
-    public void bookTicket(String eventName) {
+    public void bookTicket(String eventName, int amount) {
         if(!eventList.get(eventName).isSoldOut()) {
-            eventList.get(eventName).bookedTickets++;
-            System.out.println("Booked ticket/s, document sent to phone number, please show upon arrival.");
+            int x = (eventList.get(eventName).maxCapacity - eventList.get(eventName).bookedTickets);
+            if(amount <= (eventList.get(eventName).maxCapacity - eventList.get(eventName).bookedTickets)) {
+                for (int i = 0; i < amount; i++) {
+                    eventList.get(eventName).bookedTickets++;
+                }
+                System.out.println("Directing to purchase side...");
+                ui.sleep(2000);
+                System.out.println("Congratulations on your purchase!");
+                ui.sleep(2000);
+                System.out.println("The booked ticket/s has been sent to your phone number, please show upon arrival.");
+                ui.sleep(3000);
+            } else {
+                System.out.println("That amount of tickets are unavailable.");
+            }
         } else {
             System.out.println("No tickets can be booked, the event is sold out.");
+            ui.sleep(3000);
         }
     }
 
@@ -104,6 +123,6 @@ public class EventManager {
             amountBookedList.put(eventList.get(String).bookedTickets, String);
         });
 
-        System.out.println("Den mest populære event er: " + amountBookedList.get(amountBookedList.lastKey()) + " med " + amountBookedList.lastKey() + " tickets solgt!");
+        System.out.println("The most popular event is: " + amountBookedList.get(amountBookedList.lastKey()) + " with " + amountBookedList.lastKey() + " tickets sold!");
     }
 }

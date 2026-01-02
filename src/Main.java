@@ -3,9 +3,9 @@
 public class Main {
     public static void main(String[] args) {
 
-        EventManager manager = new EventManager();
-        manager.loadEvents();
-        manager.printSummary();
+        Menu menu = new Menu();
+        menu.startMenu();
+
 
     }
 }
