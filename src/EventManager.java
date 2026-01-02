@@ -6,12 +6,33 @@ import java.util.TreeMap;
 public class EventManager {
 
     public TreeMap<String, Event> eventList = new TreeMap<>();
+    public ArrayList<Event> events = new ArrayList<>();
 
     // ======================================================================================
 
     public void printSummary(){
-        System.out.println("=== Event Overview ===");
-        eventList.keySet().forEach(String);
+        System.out.println("=== Event Overview ===\n");
+        eventList.keySet().forEach(String -> {
+            if(eventList.get(String) instanceof Concert){
+                String concertName = ((Concert) eventList.get(String)).getName();
+                Date concertDate = ((Concert) eventList.get(String)).getDate();
+                int price = ((Concert) eventList.get(String)).getPrice();
+                int bookedTickets = ((Concert) eventList.get(String)).getBookedTickets();
+                int maxCapacity = ((Concert) eventList.get(String)).getMaxCapacity();
+                boolean status = ((Concert) eventList.get(String)).isSoldOut();
+                String artist = ((Concert) eventList.get(String)).getArtist();
+                String genre = ((Concert) eventList.get(String)).getGenre();
+                System.out.println("Concert: " + concertName + " with " + artist + " [" + genre + "]");
+                System.out.println("Date: " + concertDate);
+                System.out.println("Price: " + price + " kr.");
+                System.out.println("Booked: " + bookedTickets + "/" + maxCapacity + "tickets");
+                if(status) {
+                    System.out.println("Status: SOLD OUT" );
+                } else {
+                    System.out.println("Status: Available" );
+                }
+            }
+        });
 
     }
 
@@ -20,6 +41,7 @@ public class EventManager {
     public void createConcertEvent(String name, Date date, int price, int maxCapacity, int bookedTickes, String artist, String genre) {
         Event concert = new Concert(name, date, price, maxCapacity, bookedTickes, artist, genre);
         eventList.put(name, concert);
+        events.add(concert);
     }
 
     public void createWorkShopEvent(String name, Date date, int price, int maxCapacity, int bookedTickes, String instructor, String topic, boolean materials) {
