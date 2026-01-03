@@ -106,6 +106,7 @@ public class EventManager {
                 ui.sleep(3000);
             } else {
                 System.out.println("That amount of tickets are unavailable.");
+                ui.sleep(2000);
             }
         } else {
             System.out.println("No tickets can be booked, the event is sold out.");
