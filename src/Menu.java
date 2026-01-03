@@ -1,6 +1,3 @@
-import java.sql.SQLOutput;
-import java.util.Date;
-
 public class Menu {
 
     EventManager manager;
