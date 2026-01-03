@@ -14,12 +14,12 @@ public class UI {
         while (true) {
             Scanner scanner = new Scanner(System.in);
             userInput = scanner.nextLine();
-            if (!userInput.toUpperCase().equals("Y") || !userInput.toUpperCase().equals("N")) {
-                System.out.println("Invalid number, please try again.");
-            } else if (userInput.toUpperCase().equals("Y")) {
+             if (userInput.toUpperCase().equals("Y")) {
                 return true;
             } else if (userInput.toUpperCase().equals("N")) {
                 return false;
+            } else {
+                System.out.println("Invalid input, please try again.");
             }
         }
     }

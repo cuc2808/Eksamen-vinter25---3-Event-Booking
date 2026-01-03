@@ -16,11 +16,11 @@ public abstract class Event {
         this.bookedTickets = bookedTickets;
     }
 
-    public void addBooking(){
+    public void addBooking() {
 
     }
 
-    public boolean isSoldOut(){
+    public boolean isSoldOut() {
         return bookedTickets >= maxCapacity;
     }
 

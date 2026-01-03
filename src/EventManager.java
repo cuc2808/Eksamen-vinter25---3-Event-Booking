@@ -10,13 +10,13 @@ public class EventManager {
 
     UI ui = new UI();
 
-    public EventManager(){
+    public EventManager() {
         loadEvents();
     }
 
     // ======================================================================================
 
-    public void printSummary(){
+    public void printSummary() {
         System.out.println("=== Event Overview ===\n");
         eventList.keySet().forEach(String -> {
             if (eventList.get(String) instanceof Concert) {
@@ -32,10 +32,10 @@ public class EventManager {
                 System.out.println("Date: " + concertDate);
                 System.out.println("Price: " + price + " kr.");
                 System.out.println("Booked: " + bookedTickets + " / " + maxCapacity + " tickets");
-                if(status) {
-                    System.out.println("Status: SOLD OUT\n" );
+                if (status) {
+                    System.out.println("Status: SOLD OUT\n");
                 } else {
-                    System.out.println("Status: Available\n" );
+                    System.out.println("Status: Available\n");
                 }
 
             } else if (eventList.get(String) instanceof WorkShop) {
@@ -52,15 +52,15 @@ public class EventManager {
                 System.out.println("Date: " + workShopDate);
                 System.out.println("Price: " + price + " kr.");
                 System.out.println("Booked: " + bookedTickets + " / " + maxCapacity + " tickets");
-                if(materialsIncluded) {
-                    System.out.println("Materials included: Yes" );
+                if (materialsIncluded) {
+                    System.out.println("Materials included: Yes");
                 } else {
-                    System.out.println("Materials included: No" );
+                    System.out.println("Materials included: No");
                 }
-                if(status) {
-                    System.out.println("Status: SOLD OUT\n" );
+                if (status) {
+                    System.out.println("Status: SOLD OUT\n");
                 } else {
-                    System.out.println("Status: Available\n" );
+                    System.out.println("Status: Available\n");
                 }
 
             }
@@ -80,21 +80,21 @@ public class EventManager {
         eventList.put(name, workShop);
     }
 
-    public void loadEvents(){
-        createConcertEvent("The emptiness Machine", new Date(126,1,20, 20,30),399, 2000, 1399, "Linkin Park", "ROCK");
-        createConcertEvent("Back in the ol' days", new Date(126,2,5, 20,0),449, 2000, 2000, "Queen", "POP");
-        createWorkShopEvent("How To Draw a PERFECT Circle", new Date(126,3,15,15,30),50,10,9,"Damian","Arts & Crafts",false);
-        createWorkShopEvent("The 10 principles of Epictetus", new Date(126,2,12,19,15),129,30,30,"Shaun","Philosophy, Stoicism",true);
+    public void loadEvents() {
+        createConcertEvent("The emptiness Machine", new Date(126, 1, 20, 20, 30), 399, 2000, 1399, "Linkin Park", "ROCK");
+        createConcertEvent("Back in the ol' days", new Date(126, 2, 5, 20, 0), 449, 2000, 2000, "Queen", "POP");
+        createWorkShopEvent("How To Draw a PERFECT Circle", new Date(126, 3, 15, 15, 30), 50, 10, 9, "Damian", "Arts & Crafts", false);
+        createWorkShopEvent("The 10 principles of Epictetus", new Date(126, 2, 12, 19, 15), 129, 30, 30, "Shaun", "Philosophy, Stoicism", true);
     }
 
     public void addEvent(String eventName, Event event) {
-        eventList.put(eventName,event);
+        eventList.put(eventName, event);
     }
 
     public void bookTicket(String eventName, int amount) {
-        if(!eventList.get(eventName).isSoldOut()) {
+        if (!eventList.get(eventName).isSoldOut()) {
             int x = (eventList.get(eventName).maxCapacity - eventList.get(eventName).bookedTickets);
-            if(amount <= (eventList.get(eventName).maxCapacity - eventList.get(eventName).bookedTickets)) {
+            if (amount <= (eventList.get(eventName).maxCapacity - eventList.get(eventName).bookedTickets)) {
                 for (int i = 0; i < amount; i++) {
                     eventList.get(eventName).bookedTickets++;
                 }

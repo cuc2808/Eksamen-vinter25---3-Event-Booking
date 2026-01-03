@@ -1,16 +1,18 @@
+import java.util.Date;
+
 public class Menu {
 
     EventManager manager;
     UI ui;
 
-    public Menu(){
+    public Menu() {
         manager = new EventManager();
         ui = new UI();
 
     }
 
-    public void startMenu(){
-        while(true) {
+    public void startMenu() {
+        while (true) {
             System.out.println("Welcome to the EventManger/BookingSide.COM");
 
             manager.printSummary();
@@ -40,9 +42,9 @@ public class Menu {
         String input;
         int intInput;
         System.out.println("What event would you like to book tickets for?");
-        while(true) {
+        while (true) {
             input = ui.userStringInput();
-            if(manager.eventList.containsKey(input) && !manager.eventList.get(input).isSoldOut()) {
+            if (manager.eventList.containsKey(input) && !manager.eventList.get(input).isSoldOut()) {
                 int i = (manager.eventList.get(input).maxCapacity - manager.eventList.get(input).bookedTickets);
                 System.out.println("There is " + i + " tickets left for this event.");
                 System.out.println("How many tickets would you like to book?");
@@ -64,7 +66,7 @@ public class Menu {
         System.out.println("Hello our dear welcome creator! :D");
         System.out.println("Please fill the information below as asked.");
         System.out.println("Is it a WorkShop or a Concert?");
-        while(true) {
+        while (true) {
             String input = ui.userStringInput();
             if (input.toUpperCase().equals("WORKSHOP")) {
                 System.out.println("Please enter the name of the event:");
@@ -130,7 +132,6 @@ public class Menu {
                 System.out.println("Invalid answer, please try again.");
             }
         }
-
 
 
     }
