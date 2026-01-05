@@ -12,10 +12,10 @@ public class Menu {
     }
 
     public void startMenu() {
+        manager.printSummary();
         while (true) {
             System.out.println("Welcome to the EventManger/BookingSide.COM");
 
-            manager.printSummary();
 
             System.out.println("What would you like to do? Press any of the following numbers.");
 
@@ -27,12 +27,16 @@ public class Menu {
 
             if (input == 1) {
                 bookingMenu();
+                manager.printSummary();
             } else if (input == 2) {
                 createMenu();
+                manager.printSummary();
             } else if (input == 3) {
                 System.out.println("Closing application...");
                 ui.sleep(2000);
                 return;
+            } else {
+                System.out.println("Invalid number, try again.");
             }
 
         }
@@ -75,13 +79,13 @@ public class Menu {
                 System.out.println("Please follow the instructions:");
                 System.out.println("- Type a Year(2026 and up):");
                 int year = (ui.userYearInput() - 1900);
-                System.out.println("- Type a Month(from 1-12");
+                System.out.println("- Type a Month(from 1-12)");
                 int month = (ui.userMonthInput());
-                System.out.println("- Type a Day(from 1-28");
+                System.out.println("- Type a Day(from 1-28)");
                 int day = (ui.userDayInput());
-                System.out.println("- Type the Hour(From 024");
+                System.out.println("- Type the Hour(From 0-24)");
                 int hour = (ui.userHourInput());
-                System.out.println("- Type the Minute(From 0-60");
+                System.out.println("- Type the Minute(From 0-60)");
                 int minute = (ui.userMinuteInput());
                 Date date = new Date(year, month, day, hour, minute);
                 System.out.println("Now, how many people can attend the WorkShop?");
